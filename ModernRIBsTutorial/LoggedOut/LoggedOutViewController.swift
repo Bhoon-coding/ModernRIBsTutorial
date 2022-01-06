@@ -11,7 +11,7 @@ import SnapKit
 import UIKit
 
 protocol LoggedOutPresentableListener: AnyObject {
-//    func login(withPlayer1Name player1Name: String?, player2Name: String?)
+    func login(withPlayer1Name player1Name: String?, player2Name: String?)
 }
 
 final class LoggedOutViewController: UIViewController, LoggedOutPresentable, LoggedOutViewControllable {
@@ -73,7 +73,7 @@ final class LoggedOutViewController: UIViewController, LoggedOutPresentable, Log
 }
 
  @objc private func didTapLoginButton() {
-    print("hi, good morning")
+     listener?.login(withPlayer1Name: player1Field?.text, player2Name: player2Field?.text)
  }
 }
 

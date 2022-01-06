@@ -2,7 +2,8 @@
 //  LoggedOutInteractor.swift
 //  ModernRIBsTutorial
 //
-//  Created by Ppop on 2021/12/28.
+//  Created by BH on 2022/01/06.
+//  Copyright © 2022 Uber. All rights reserved.
 //
 
 import ModernRIBs
@@ -21,7 +22,7 @@ protocol LoggedOutListener: AnyObject {
 }
 
 final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
-
+    
     weak var router: LoggedOutRouting?
     weak var listener: LoggedOutListener?
 
@@ -42,10 +43,11 @@ final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, Lo
         // TODO: Pause any business logic.
     }
     
-    func login(withPlayerName player1Name: String?, _ player2Name: String?) {
+    func login(withPlayer1Name player1Name: String?, player2Name: String?) {
+        
         let player1NameWithDefault = playerName(player1Name, withDefaultName: "Player 1")
-            let player2NameWithDefault = playerName(player2Name, withDefaultName: "Player 2")
-
+        let player2NameWithDefault = playerName(player2Name, withDefaultName: "Player 2")
+        
             print("\(player1NameWithDefault) vs \(player2NameWithDefault)")
     }
     
