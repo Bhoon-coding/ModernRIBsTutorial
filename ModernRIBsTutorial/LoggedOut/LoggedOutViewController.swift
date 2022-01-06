@@ -10,7 +10,7 @@ import ModernRIBs
 import SnapKit
 import UIKit
 
-protocol LoggedOutPresentableListener: AnyObject {
+protocol LoggedOutPresentableListener: class {
     func login(withPlayer1Name player1Name: String?, player2Name: String?)
 }
 
