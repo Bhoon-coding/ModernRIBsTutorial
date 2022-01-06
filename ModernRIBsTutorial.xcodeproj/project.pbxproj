@@ -24,6 +24,7 @@
 		51DF53AA277ABE7F006FA6A0 /* LoggedOutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF53A6277ABE7F006FA6A0 /* LoggedOutBuilder.swift */; };
 		51DF53AB277ABE7F006FA6A0 /* LoggedOutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF53A7277ABE7F006FA6A0 /* LoggedOutInteractor.swift */; };
 		51DF53AD277ABFC0006FA6A0 /* RootComponent+LoggedOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF53AC277ABFC0006FA6A0 /* RootComponent+LoggedOut.swift */; };
+		E1347F0C2786EB4600EB4064 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E1347F0B2786EB4600EB4064 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51DF5394277AB9E3006FA6A0 /* ModernRIBs in Frameworks */,
+				E1347F0C2786EB4600EB4064 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +194,7 @@
 			name = ModernRIBsTutorial;
 			packageProductDependencies = (
 				51DF5393277AB9E3006FA6A0 /* ModernRIBs */,
+				E1347F0B2786EB4600EB4064 /* SnapKit */,
 			);
 			productName = ModernRIBsTutorial;
 			productReference = 51DF535F277AB9C6006FA6A0 /* ModernRIBsTutorial.app */;
@@ -267,6 +270,7 @@
 			mainGroup = 51DF5356277AB9C6006FA6A0;
 			packageReferences = (
 				51DF5392277AB9E3006FA6A0 /* XCRemoteSwiftPackageReference "ModernRIBs" */,
+				E1347F0A2786EB4600EB4064 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 51DF5360277AB9C6006FA6A0 /* Products */;
 			projectDirPath = "";
@@ -498,7 +502,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -508,7 +512,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -526,7 +530,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -536,7 +540,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -666,6 +670,14 @@
 				kind = branch;
 			};
 		};
+		E1347F0A2786EB4600EB4064 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -673,6 +685,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 51DF5392277AB9E3006FA6A0 /* XCRemoteSwiftPackageReference "ModernRIBs" */;
 			productName = ModernRIBs;
+		};
+		E1347F0B2786EB4600EB4064 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1347F0A2786EB4600EB4064 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

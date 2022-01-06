@@ -1,106 +1,112 @@
 //
 //  LoggedOutViewController.swift
-//  ModernRIBsTutorial
+//  TicTacToe
 //
-//  Created by Ppop on 2021/12/28.
+//  Created by BH on 2022/01/06.
+//  Copyright © 2022 Uber. All rights reserved.
 //
 
 import ModernRIBs
+import SnapKit
 import UIKit
 
 protocol LoggedOutPresentableListener: AnyObject {
-    func login(withPlayerName player1Name: String?, _ player2Name: String?)
+//    func login(withPlayer1Name player1Name: String?, player2Name: String?)
 }
 
 final class LoggedOutViewController: UIViewController, LoggedOutPresentable, LoggedOutViewControllable {
 
     weak var listener: LoggedOutPresentableListener?
     
-    private var player1Field: UITextField?
-    private var player2Field: UITextField?
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let playerFields = buildPlayerFields()
-        buildLoginButton(withPlayerField: playerFields.plyaer1Field,
-                         playerFields.player2Field)
-    }
-}
-
-extension LoggedOutViewController {
-    @objc private func didTapLoginButton() {
-        listener?.login(withPlayerName: player1Field?.text, player2Field?.text)
-    }
-}
-
-extension LoggedOutViewController {
-    private func buildPlayerFields() -> (plyaer1Field: UITextField,
-                                         player2Field: UITextField) {
-        let player1Field: UITextField = {
-            let textField = UITextField()
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.borderStyle = .line
-            textField.placeholder = "Player 1 name"
-            return textField
-        }()
         
-        self.player1Field = player1Field
-        view.addSubview(player1Field)
-        
-        [player1Field.topAnchor.constraint(equalTo: view.topAnchor,
-                                           constant: 100),
-         player1Field.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                               constant: 40),
-         player1Field.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                constant: -40),
-         player1Field.heightAnchor.constraint(equalToConstant: 40)]
-            .forEach { $0.isActive = true }
-        
-        let player2Field: UITextField = {
-            let textField = UITextField()
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.borderStyle = .line
-            textField.placeholder = "Player 2 name"
-            return textField
-        }()
-        
-        self.player2Field = player2Field
-        view.addSubview(player2Field)
-        
-        [player2Field.topAnchor.constraint(equalTo: player1Field.bottomAnchor,
-                                           constant: 20),
-         player2Field.leadingAnchor.constraint(equalTo: player1Field.leadingAnchor),
-         player2Field.trailingAnchor.constraint(equalTo: player1Field.trailingAnchor),
-         player2Field.heightAnchor.constraint(equalTo: player1Field.heightAnchor)]
-            .forEach { $0.isActive = true }
-        
-        return (player1Field, player2Field)
+        view.backgroundColor = UIColor.white
+        let playerFields = buildPayerFields()
+        buildLoginButton(withPlayer1Field: playerFields.player1Field, player2Field: playerFields.player2Field)
     }
     
-    private func buildLoginButton(withPlayerField player1Field: UITextField,
-                                  _ player2Field: UITextField) {
-        let loginButton: UIButton = {
-            let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle("Login",
-                            for: .normal)
-            button.setTitleColor(UIColor.white,
-                                 for: .normal)
-            button.backgroundColor = UIColor.black
-            button.addTarget(self,
-                             action: #selector(didTapLoginButton)
-                             , for: .touchUpInside)
-            return button
-        }()
+//    MARK: Private
+    
+    private var player1Field: UITextField?
+    private var player2Field: UITextField?
+    
+    private func buildPayerFields() -> (player1Field: UITextField, player2Field: UITextField) {
         
-        view.addSubview(loginButton)
+        let player1Field = UITextField()
         
-        [loginButton.topAnchor.constraint(equalTo: player2Field.bottomAnchor,
-                                          constant: 20),
-         loginButton.leadingAnchor.constraint(equalTo: player1Field.leadingAnchor),
-         loginButton.trailingAnchor.constraint(equalTo: player1Field.trailingAnchor),
-         loginButton.heightAnchor.constraint(equalTo: player1Field.heightAnchor)]
-            .forEach { $0.isActive = true }
+        self.player1Field = player1Field
+        player1Field.borderStyle = UITextField.BorderStyle.line
+        view.addSubview(player1Field)
+        player1Field.placeholder = " Player 1 name"
+        player1Field.snp.makeConstraints { (make: ConstraintMaker) in
+            make.top.equalTo(self.view).offset(100)
+            make.leading.trailing.equalTo(self.view).inset(40)
+            make.height.equalTo(40)
+        }
+        
+        let player2Field = UITextField()
+        
+        self.player2Field = player2Field
+        player2Field.borderStyle = UITextField.BorderStyle.line
+        view.addSubview(player2Field)
+        player2Field.placeholder = "Player 2 name"
+        player2Field.snp.makeConstraints { (make: ConstraintMaker) in
+            make.top.equalTo(player1Field.snp.bottom).offset(20)
+            make.left.right.height.equalTo(player1Field)
+        }
+        return (player1Field, player2Field)
+    }
+
+    private func buildLoginButton(withPlayer1Field player1Field: UITextField, player2Field: UITextField) {
+    let loginButton = UIButton()
+    view?.addSubview(loginButton)
+    loginButton.snp.makeConstraints { make in
+        make.top.equalTo(player2Field.snp.bottom).offset(20)
+        make.left.right.height.equalTo(player1Field)
+
+    }
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitleColor(UIColor.white, for: .normal)
+        loginButton.backgroundColor = UIColor.black
+        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+}
+
+ @objc private func didTapLoginButton() {
+    print("hi, good morning")
+ }
+}
+
+// 전처리
+#if DEBUG
+
+import SwiftUI
+@available(iOS 13.0, *)
+
+// UIViewControllerRepresentable을 채택
+struct ViewControllerRepresentable: UIViewControllerRepresentable {
+    // update
+    // _ uiViewController: UIViewController로 지정
+    func updateUIViewController(_ uiViewController: UIViewController , context: Context) {
+        
+    }
+    // makeui
+    func makeUIViewController(context: Context) -> UIViewController {
+    // Preview를 보고자 하는 Viewcontroller 이름
+    // e.g.)
+        LoggedOutViewController()
     }
 }
+
+struct ViewController_Previews: PreviewProvider {
+    
+    @available(iOS 13.0, *)
+    static var previews: some View {
+        // UIViewControllerRepresentable에 지정된 이름.
+        ViewControllerRepresentable()
+
+// 테스트 해보고자 하는 기기
+            .previewDevice("iPhone 11")
+    }
+}
+#endif
