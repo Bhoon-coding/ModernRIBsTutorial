@@ -19,6 +19,7 @@ final class LoggedOutViewController: UIViewController, LoggedOutPresentable, Log
     private var player1Field: UITextField?
     private var player2Field: UITextField?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let playerFields = buildPlayerFields()
