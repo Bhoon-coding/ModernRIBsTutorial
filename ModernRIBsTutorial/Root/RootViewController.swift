@@ -34,3 +34,8 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         }
     }
 }
+
+// tutorial3 에서 사용예정.
+extension RootViewController: LoggedInViewControllable {
+    
+}

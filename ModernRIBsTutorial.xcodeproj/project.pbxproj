@@ -28,6 +28,10 @@
 		E138F751278CF3F40020C07F /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F74E278CF3F40020C07F /* LoggedInRouter.swift */; };
 		E138F752278CF3F40020C07F /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F74F278CF3F40020C07F /* LoggedInBuilder.swift */; };
 		E138F753278CF3F40020C07F /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F750278CF3F40020C07F /* LoggedInInteractor.swift */; };
+		E138F759278D2B400020C07F /* OffGameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F755278D2B400020C07F /* OffGameRouter.swift */; };
+		E138F75A278D2B400020C07F /* OffGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F756278D2B400020C07F /* OffGameViewController.swift */; };
+		E138F75B278D2B400020C07F /* OffGameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F757278D2B400020C07F /* OffGameBuilder.swift */; };
+		E138F75C278D2B400020C07F /* OffGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F758278D2B400020C07F /* OffGameInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		E138F74E278CF3F40020C07F /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
 		E138F74F278CF3F40020C07F /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
 		E138F750278CF3F40020C07F /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
+		E138F755278D2B400020C07F /* OffGameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameRouter.swift; path = ModernRIBsTutorial/OffGame/OffGameRouter.swift; sourceTree = SOURCE_ROOT; };
+		E138F756278D2B400020C07F /* OffGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameViewController.swift; path = ModernRIBsTutorial/OffGame/OffGameViewController.swift; sourceTree = SOURCE_ROOT; };
+		E138F757278D2B400020C07F /* OffGameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameBuilder.swift; path = ModernRIBsTutorial/OffGame/OffGameBuilder.swift; sourceTree = SOURCE_ROOT; };
+		E138F758278D2B400020C07F /* OffGameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameInteractor.swift; path = ModernRIBsTutorial/OffGame/OffGameInteractor.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +131,7 @@
 		51DF5361277AB9C6006FA6A0 /* ModernRIBsTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				E138F75D278D2B450020C07F /* OffGame */,
 				E138F754278CF4080020C07F /* LoggedIn */,
 				51DF539E277ABCA0006FA6A0 /* AppStart */,
 				51DF53A1277ABD66006FA6A0 /* LoggedOut */,
@@ -191,6 +200,17 @@
 				E138F750278CF3F40020C07F /* LoggedInInteractor.swift */,
 			);
 			path = LoggedIn;
+			sourceTree = "<group>";
+		};
+		E138F75D278D2B450020C07F /* OffGame */ = {
+			isa = PBXGroup;
+			children = (
+				E138F755278D2B400020C07F /* OffGameRouter.swift */,
+				E138F756278D2B400020C07F /* OffGameViewController.swift */,
+				E138F757278D2B400020C07F /* OffGameBuilder.swift */,
+				E138F758278D2B400020C07F /* OffGameInteractor.swift */,
+			);
+			path = OffGame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51DF539A277ABAFB006FA6A0 /* RootRouter.swift in Sources */,
+				E138F759278D2B400020C07F /* OffGameRouter.swift in Sources */,
 				E138F751278CF3F40020C07F /* LoggedInRouter.swift in Sources */,
 				51DF53A9277ABE7F006FA6A0 /* LoggedOutViewController.swift in Sources */,
 				51DF5363277AB9C6006FA6A0 /* AppDelegate.swift in Sources */,
@@ -340,7 +361,10 @@
 				51DF539C277ABAFB006FA6A0 /* RootBuilder.swift in Sources */,
 				51DF53A8277ABE7F006FA6A0 /* LoggedOutRouter.swift in Sources */,
 				51DF539D277ABAFB006FA6A0 /* RootInteractor.swift in Sources */,
+				E138F75A278D2B400020C07F /* OffGameViewController.swift in Sources */,
 				E138F752278CF3F40020C07F /* LoggedInBuilder.swift in Sources */,
+				E138F75C278D2B400020C07F /* OffGameInteractor.swift in Sources */,
+				E138F75B278D2B400020C07F /* OffGameBuilder.swift in Sources */,
 				51DF53AB277ABE7F006FA6A0 /* LoggedOutInteractor.swift in Sources */,
 				51DF53A0277ABCBB006FA6A0 /* AppComponent.swift in Sources */,
 				51DF53AD277ABFC0006FA6A0 /* RootComponent+LoggedOut.swift in Sources */,
