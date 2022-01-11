@@ -19,7 +19,9 @@ protocol LoggedOutPresentable: Presentable {
 
 protocol LoggedOutListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-    func didLogin(withPlayerName player1Name: String, player2Name: String)
+    func didLogin(withPlayer1Name player1Name: String, player2Name: String) {
+        router?.routeToLoggedIn(withPlayer1Name: player1Name, player2Name: player2Name)
+    }
 }
 
 final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
