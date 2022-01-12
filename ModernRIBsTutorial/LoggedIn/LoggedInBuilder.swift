@@ -14,7 +14,7 @@ protocol LoggedInDependency: Dependency {
     // created by this RIB.
 }
 
-final class LoggedInComponent: Component<LoggedInDependency> {
+final class LoggedInComponent: Component<LoggedInDependency>, OffGameDependency {
 
     // TODO: Make sure to convert the variable into lower-camelcase.
     fileprivate var LoggedInViewController: LoggedInViewControllable {

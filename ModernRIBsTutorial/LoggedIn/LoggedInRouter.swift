@@ -19,6 +19,11 @@ protocol LoggedInViewControllable: ViewControllable {
 }
 
 final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
+    
+    override func didLoad() {
+        super.didLoad()
+        attachOffGame()
+    }
 
     // TODO: Constructor inject child builder protocols to allow building children.
     init(interactor: LoggedInInteractable, viewController: LoggedInViewControllable, offGameBuilder: OffGameBuildable) {
