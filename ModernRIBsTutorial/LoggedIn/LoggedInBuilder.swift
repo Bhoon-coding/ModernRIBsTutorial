@@ -9,7 +9,7 @@ import ModernRIBs
 
 protocol LoggedInDependency: Dependency {
     // TODO: Make sure to convert the variable into lower-camelcase.
-    var LoggedInViewController: LoggedInViewControllable { get }
+    var loggedInViewController: LoggedInViewControllable { get }
     // TODO: Declare the set of dependencies required by this RIB, but won't be
     // created by this RIB.
 }
@@ -17,8 +17,8 @@ protocol LoggedInDependency: Dependency {
 final class LoggedInComponent: Component<LoggedInDependency>, OffGameDependency {
 
     // TODO: Make sure to convert the variable into lower-camelcase.
-    fileprivate var LoggedInViewController: LoggedInViewControllable {
-        return dependency.LoggedInViewController
+    fileprivate var loggedInViewController: LoggedInViewControllable {
+        return dependency.loggedInViewController
     }
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
@@ -42,7 +42,8 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         interactor.listener = listener
         
         let offGameBuilder = OffGameBuilder(dependency: component)
-        return LoggedInRouter(interactor: interactor, viewController: component.LoggedInViewController,
-        offGameBuilder: offGameBuilder)
+        return LoggedInRouter(interactor: interactor,
+                              viewController: component.loggedInViewController,
+                              offGameBuilder: offGameBuilder)
     }
 }

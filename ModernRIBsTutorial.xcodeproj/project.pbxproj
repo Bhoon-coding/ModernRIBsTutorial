@@ -32,6 +32,7 @@
 		E138F75A278D2B400020C07F /* OffGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F756278D2B400020C07F /* OffGameViewController.swift */; };
 		E138F75B278D2B400020C07F /* OffGameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F757278D2B400020C07F /* OffGameBuilder.swift */; };
 		E138F75C278D2B400020C07F /* OffGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F758278D2B400020C07F /* OffGameInteractor.swift */; };
+		E185D7A3278F946400E8FD61 /* TicTacToe in Resources */ = {isa = PBXBuildFile; fileRef = E185D7A2278F946400E8FD61 /* TicTacToe */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		E138F756278D2B400020C07F /* OffGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameViewController.swift; path = ModernRIBsTutorial/OffGame/OffGameViewController.swift; sourceTree = SOURCE_ROOT; };
 		E138F757278D2B400020C07F /* OffGameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameBuilder.swift; path = ModernRIBsTutorial/OffGame/OffGameBuilder.swift; sourceTree = SOURCE_ROOT; };
 		E138F758278D2B400020C07F /* OffGameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameInteractor.swift; path = ModernRIBsTutorial/OffGame/OffGameInteractor.swift; sourceTree = SOURCE_ROOT; };
+		E185D7A2278F946400E8FD61 /* TicTacToe */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TicTacToe; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		51DF5361277AB9C6006FA6A0 /* ModernRIBsTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				E185D7A2278F946400E8FD61 /* TicTacToe */,
 				E138F75D278D2B450020C07F /* OffGame */,
 				E138F754278CF4080020C07F /* LoggedIn */,
 				51DF539E277ABCA0006FA6A0 /* AppStart */,
@@ -325,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E185D7A3278F946400E8FD61 /* TicTacToe in Resources */,
 				51DF536F277AB9C8006FA6A0 /* LaunchScreen.storyboard in Resources */,
 				51DF536C277AB9C8006FA6A0 /* Assets.xcassets in Resources */,
 			);
