@@ -39,6 +39,8 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         // TODO: Pause any business logic.
     }
     
+    // MARK: TicTacToeListener
+    
     func gameDidEnd() {
         router?.routeToOffGame()
     }

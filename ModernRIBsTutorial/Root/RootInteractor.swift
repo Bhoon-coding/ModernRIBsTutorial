@@ -8,9 +8,9 @@
 import ModernRIBs
 
 protocol RootRouting: ViewableRouting {
-    // LoggedIn RIB과 연결
-    func routeToLoggedIn(withPlayer1Name player1Name: String, player2Name: String)
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func routeToLoggedIn(withPlayer1Name player1Name: String, player2Name: String)
+    
 }
 
 protocol RootPresentable: Presentable {

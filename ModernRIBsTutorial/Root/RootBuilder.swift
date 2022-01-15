@@ -14,13 +14,13 @@ protocol RootDependency: Dependency {
 
 final class RootComponent: Component<RootDependency> {
 
-//    let rootViewController: RootViewController
+    let rootViewController: RootViewController
 //
-//    init(dependency: RootDependency,
-//         rootViewController: RootViewController) {
-//        self.rootViewController = rootViewController
-//        super.init(dependency: dependency)
-//    }
+    init(dependency: RootDependency,
+         rootViewController: RootViewController) {
+        self.rootViewController = rootViewController
+        super.init(dependency: dependency)
+    }
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
@@ -45,7 +45,6 @@ final class RootBuilder: Builder<RootDependency>,
 
         let loggedOutBuilder = LoggedOutBuilder(dependency: component)
         let loggedInBuilder = LoggedInBuilder(dependency: component)
-        
         return RootRouter(interactor: interactor,
                           viewController: viewController,
                           loggedOutBuilder: loggedOutBuilder,
