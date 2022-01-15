@@ -61,9 +61,9 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         attachOffGame()
     }
     
-    func gameDidEnd() {
-        router?.routeToOffGame()
-    }
+//    func gameDidEnd() {
+//        router?.routeToOffGame()
+//    }
     
     // MARK: - Private
 
