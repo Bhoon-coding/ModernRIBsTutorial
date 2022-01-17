@@ -28,6 +28,12 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     }
 
     // TODO: Constructor inject child builder protocols to allow building children.
+    
+    // (부모RIB) LoggedIn, (자식RIB) OffGame, TicTacToe
+    // 부모 Router에 private 상수 자식RIB Builder선언
+    //     ex) private let offGameBuilder: OffGameBuildable
+    // Router init에서 (새로생긴RIBBuilderable) 프로토콜 전달 받을 수 있게 수정.
+    //     ex) init(offGameBuilder: OffGameBuildable) { self.offGameBuilder = OffGamebuilder }
     init(interactor: LoggedInInteractable,
          viewController: LoggedInViewControllable,
          offGameBuilder: OffGameBuildable,
@@ -54,6 +60,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         currentChild = ticTacToe
         attachChild(ticTacToe)
         viewController.present(viewController: ticTacToe.viewControllable)
+        
     }
     
     func routeToOffGame() {
@@ -61,9 +68,9 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         attachOffGame()
     }
     
-//    func gameDidEnd() {
+    func gameDidEnd() {
 //        router?.routeToOffGame()
-//    }
+    }
     
     // MARK: - Private
 
@@ -86,4 +93,6 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
             viewController.dismiss(viewController: currentChild.viewControllable)
         }
     }
+    
+    
 }

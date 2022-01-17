@@ -44,4 +44,8 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
     func gameDidEnd() {
         router?.routeToOffGame()
     }
+
+    func didStartGame() {
+        router?.routeToTicTacToe()
+    }
 }

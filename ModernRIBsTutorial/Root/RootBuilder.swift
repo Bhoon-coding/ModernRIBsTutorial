@@ -37,14 +37,18 @@ final class RootBuilder: Builder<RootDependency>,
         super.init(dependency: dependency)
     }
 
+//  객체전달을 위해  build 메소드에 새로생긴RIB의 Builder 객체를 생성해서 주입할수 있도록 하기
+//  객체 생성했으면 RootRouter로 이동
     func build() -> LaunchRouting {
         let viewController = RootViewController()
         let component = RootComponent(dependency: dependency,
                                       rootViewController: viewController)
         let interactor = RootInteractor(presenter: viewController)
 
+        // 객체 생성 부분
         let loggedOutBuilder = LoggedOutBuilder(dependency: component)
         let loggedInBuilder = LoggedInBuilder(dependency: component)
+        // 객체 전달 부분
         return RootRouter(interactor: interactor,
                           viewController: viewController,
                           loggedOutBuilder: loggedOutBuilder,
