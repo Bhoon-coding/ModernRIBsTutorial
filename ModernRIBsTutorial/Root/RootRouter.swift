@@ -53,7 +53,6 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     
     // MARK: RootRouting
     
-    
     func routeToLoggedIn(withPlayer1Name player1Name: String, player2Name: String) {
         // Detach LoggedOut RIB.
         if let loggedOut = self.loggedOut {

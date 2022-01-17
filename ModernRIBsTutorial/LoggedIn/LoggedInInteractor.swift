@@ -9,8 +9,8 @@ import ModernRIBs
 
 protocol LoggedInRouting: Routing {
     func routeToTicTacToe()
-    func routeToOffGame()
     func cleanupViews()
+    func routeToOffGame()
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
