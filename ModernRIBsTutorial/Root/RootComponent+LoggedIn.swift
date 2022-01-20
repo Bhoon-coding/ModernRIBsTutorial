@@ -16,7 +16,6 @@ protocol RootDependencyLoggedIn: Dependency {
 
 extension RootComponent: LoggedInDependency {
 
-    // TODO: Implement properties to provide for LoggedOut scope.
     var loggedInViewController: LoggedInViewControllable {
         return rootViewController
     }

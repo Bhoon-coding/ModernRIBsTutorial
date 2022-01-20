@@ -36,24 +36,16 @@ final class TicTacToeViewController: UIViewController, TicTacToePresentable, Tic
 
     func setCell(atRow row: Int, col: Int, withPlayerType playerType: PlayerType) {
         let indexPathRow = row * GameConstants.colCount + col
-        let color: UIColor = {
-            switch playerType {
-            case .red:
-                return UIColor.red
-            case .blue:
-                return UIColor.blue
-            }
-        }()
         let cell = collectionView.cellForItem(at: IndexPath(row: indexPathRow, section: Constants.sectionCount - 1))
-        cell?.backgroundColor = color
+        cell?.backgroundColor = playerType.color
     }
 
     func announce(winner: PlayerType) {
         let winnerString: String = {
             switch winner {
-            case .red:
+            case .player1:
                 return "Red"
-            case .blue:
+            case .player2:
                 return "Blue"
             }
         }()

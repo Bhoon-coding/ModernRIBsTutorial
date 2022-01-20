@@ -8,32 +8,17 @@
 import ModernRIBs
 
 protocol LoggedInInteractable: Interactable, OffGameListener, TicTacToeListener {
-     var router: LoggedInRouting? { get set }
-     var listener: LoggedInListener? { get set }
+    var router: LoggedInRouting? { get set }
+    var listener: LoggedInListener? { get set }
 }
 
 protocol LoggedInViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy. Since
-    // this RIB does not own its own view, this protocol is conformed to by one of this
-    // RIB's ancestor RIBs' view.
     func present(viewController: ViewControllable)
     func dismiss(viewController: ViewControllable)
 }
 
 final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
-    
-    override func didLoad() {
-        super.didLoad()
-        attachOffGame()
-    }
 
-    // TODO: Constructor inject child builder protocols to allow building children.
-    
-    // (부모RIB) LoggedIn, (자식RIB) OffGame, TicTacToe
-    // 부모 Router에 private 상수 자식RIB Builder선언
-    //     ex) private let offGameBuilder: OffGameBuildable
-    // Router init에서 (새로생긴RIBBuilderable) 프로토콜 전달 받을 수 있게 수정.
-    //     ex) init(offGameBuilder: OffGameBuildable) { self.offGameBuilder = OffGamebuilder }
     init(interactor: LoggedInInteractable,
          viewController: LoggedInViewControllable,
          offGameBuilder: OffGameBuildable,
@@ -45,54 +30,52 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         interactor.router = self
     }
 
+    override func didLoad() {
+        super.didLoad()
+        attachOffGame()
+    }
+
+    // MARK: - LoggedInRouting
+
     func cleanupViews() {
-        // TODO: Since this router does not own its view, it needs to cleanup the views
-        // it may have added to the view hierarchy, when its interactor is deactivated.
         if let currentChild = currentChild {
             viewController.dismiss(viewController: currentChild.viewControllable)
         }
     }
-    
+
     func routeToTicTacToe() {
         detachCurrentChild()
-        
+
         let ticTacToe = ticTacToeBuilder.build(withListener: interactor)
         currentChild = ticTacToe
         attachChild(ticTacToe)
         viewController.present(viewController: ticTacToe.viewControllable)
-        
     }
-    
+
     func routeToOffGame() {
         detachCurrentChild()
         attachOffGame()
     }
-    
-    func gameDidEnd() {
-//        router?.routeToOffGame()
-    }
-    
+
     // MARK: - Private
 
     private let viewController: LoggedInViewControllable
     private let offGameBuilder: OffGameBuildable
     private let ticTacToeBuilder: TicTacToeBuildable
-    
+
     private var currentChild: ViewableRouting?
-    
+
     private func attachOffGame() {
         let offGame = offGameBuilder.build(withListener: interactor)
         self.currentChild = offGame
         attachChild(offGame)
         viewController.present(viewController: offGame.viewControllable)
     }
-    
+
     private func detachCurrentChild() {
         if let currentChild = currentChild {
             detachChild(currentChild)
             viewController.dismiss(viewController: currentChild.viewControllable)
         }
     }
-    
-    
 }

@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import RxSwift
 
 protocol OffGameRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -13,27 +14,22 @@ protocol OffGameRouting: ViewableRouting {
 
 protocol OffGamePresentable: Presentable {
     var listener: OffGamePresentableListener? { get set }
-    func set(score: Score)
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol OffGameListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-    func didStartGame()
+    func startTicTacToe()
 }
 
 final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGameInteractable, OffGamePresentableListener {
 
     weak var router: OffGameRouting?
+
     weak var listener: OffGameListener?
-    
-    private let scoreStream: ScoreStream
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    init(presenter: OffGamePresentable,
-                  scoreStream: ScoreStream) {
-        self.scoreStream = scoreStream
+    override init(presenter: OffGamePresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -47,11 +43,10 @@ final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGam
         super.willResignActive()
         // TODO: Pause any business logic.
     }
-    
+
+    // MARK: - OffGamePresentableListener
+
     func startGame() {
-        listener?.didStartGame()
+        listener?.startTicTacToe()
     }
-    
-    
-    
 }

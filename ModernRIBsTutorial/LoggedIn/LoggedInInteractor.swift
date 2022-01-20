@@ -6,12 +6,17 @@
 //
 
 import ModernRIBs
+import RxSwift
+
+enum PlayerType: Int {
+    case player1 = 1
+    case player2
+}
 
 protocol LoggedInRouting: Routing {
-    func routeToTicTacToe()
     func cleanupViews()
+    func routeToTicTacToe()
     func routeToOffGame()
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol LoggedInListener: AnyObject {
@@ -38,14 +43,16 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         router?.cleanupViews()
         // TODO: Pause any business logic.
     }
-    
-    // MARK: TicTacToeListener
-    
-    func gameDidEnd() {
-        router?.routeToOffGame()
+
+    // MARK: - OffGameListener
+
+    func startTicTacToe() {
+        router?.routeToTicTacToe()
     }
 
-    func didStartGame() {
-        router?.routeToTicTacToe()
+    // MARK: - TicTacToeListener
+
+    func gameDidEnd() {
+        router?.routeToOffGame()
     }
 }

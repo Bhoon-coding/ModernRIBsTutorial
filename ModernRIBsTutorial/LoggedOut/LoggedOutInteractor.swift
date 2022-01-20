@@ -7,6 +7,7 @@
 //
 
 import ModernRIBs
+import RxSwift
 
 protocol LoggedOutRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -18,14 +19,13 @@ protocol LoggedOutPresentable: Presentable {
 }
 
 protocol LoggedOutListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-    // 상향 통신을 할때 Listener 인터페이스 사용 (LoggedOut RIB -> Root RIB 통신)
-    func didLogin(withPlayer1Name player1Name: String, player2Name: String) 
+    func didLogin(withPlayer1Name player1Name: String, player2Name: String)
 }
 
 final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
-    
+
     weak var router: LoggedOutRouting?
+
     weak var listener: LoggedOutListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
@@ -44,15 +44,16 @@ final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, Lo
         super.willResignActive()
         // TODO: Pause any business logic.
     }
-    
+
+    // MARK: - LoggedOutPresentableListener
+
     func login(withPlayer1Name player1Name: String?, player2Name: String?) {
-        
         let player1NameWithDefault = playerName(player1Name, withDefaultName: "Player 1")
         let player2NameWithDefault = playerName(player2Name, withDefaultName: "Player 2")
+
         listener?.didLogin(withPlayer1Name: player1NameWithDefault, player2Name: player2NameWithDefault)
-            print("\(player1NameWithDefault) vs \(player2NameWithDefault)")
     }
-    
+
     private func playerName(_ name: String?, withDefaultName defaultName: String) -> String {
         if let name = name {
             return name.isEmpty ? defaultName : name

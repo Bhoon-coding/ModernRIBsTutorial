@@ -6,11 +6,10 @@
 //
 
 import ModernRIBs
+import RxSwift
 
 protocol RootRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
     func routeToLoggedIn(withPlayer1Name player1Name: String, player2Name: String)
-    
 }
 
 protocol RootPresentable: Presentable {
@@ -24,8 +23,8 @@ protocol RootListener: AnyObject {
 
 final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
 
-    // RootRouting을 채택함으로써 routeToLoggedIn 메소드를 구현하도록 강제된다.
     weak var router: RootRouting?
+
     weak var listener: RootListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
@@ -44,10 +43,10 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         super.willResignActive()
         // TODO: Pause any business logic.
     }
-    
+
+    // MARK: - LoggedOutListener
+
     func didLogin(withPlayer1Name player1Name: String, player2Name: String) {
-        // RootRouting 프로토콜 객체를 통해 routeToLoggedIn 함수를 호출
-        // Login 버튼 터치시 Root RIB이 LoggedIn RIB으로 routing할 수 있게함.
         router?.routeToLoggedIn(withPlayer1Name: player1Name, player2Name: player2Name)
     }
 }
