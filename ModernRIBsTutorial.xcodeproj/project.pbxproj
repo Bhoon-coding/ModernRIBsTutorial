@@ -36,6 +36,9 @@
 		E138F75A278D2B400020C07F /* OffGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F756278D2B400020C07F /* OffGameViewController.swift */; };
 		E138F75B278D2B400020C07F /* OffGameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F757278D2B400020C07F /* OffGameBuilder.swift */; };
 		E138F75C278D2B400020C07F /* OffGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138F758278D2B400020C07F /* OffGameInteractor.swift */; };
+		E16F29092798D5E700566281 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = E16F29082798D5E700566281 /* RxRelay */; };
+		E16F290B2798D5E700566281 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E16F290A2798D5E700566281 /* RxSwift */; };
+		E16F290D2798DEC900566281 /* ScroreStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F290C2798DEC900566281 /* ScroreStream.swift */; };
 		E1E4E1D12792CBCF0063004D /* RootComponent+LoggedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4E1D02792CBCF0063004D /* RootComponent+LoggedIn.swift */; };
 		E1E4E1D32792CE700063004D /* LoggedInComponent+OffGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4E1D22792CE700063004D /* LoggedInComponent+OffGame.swift */; };
 		E1E4E1D52792D4EA0063004D /* LoggedInComponent+TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4E1D42792D4EA0063004D /* LoggedInComponent+TicTacToe.swift */; };
@@ -90,6 +93,7 @@
 		E138F756278D2B400020C07F /* OffGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameViewController.swift; path = ModernRIBsTutorial/OffGame/OffGameViewController.swift; sourceTree = SOURCE_ROOT; };
 		E138F757278D2B400020C07F /* OffGameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameBuilder.swift; path = ModernRIBsTutorial/OffGame/OffGameBuilder.swift; sourceTree = SOURCE_ROOT; };
 		E138F758278D2B400020C07F /* OffGameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OffGameInteractor.swift; path = ModernRIBsTutorial/OffGame/OffGameInteractor.swift; sourceTree = SOURCE_ROOT; };
+		E16F290C2798DEC900566281 /* ScroreStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScroreStream.swift; sourceTree = "<group>"; };
 		E1E4E1D02792CBCF0063004D /* RootComponent+LoggedIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+LoggedIn.swift"; sourceTree = "<group>"; };
 		E1E4E1D22792CE700063004D /* LoggedInComponent+OffGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggedInComponent+OffGame.swift"; sourceTree = "<group>"; };
 		E1E4E1D42792D4EA0063004D /* LoggedInComponent+TicTacToe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggedInComponent+TicTacToe.swift"; sourceTree = "<group>"; };
@@ -100,7 +104,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E16F29092798D5E700566281 /* RxRelay in Frameworks */,
 				51DF5394277AB9E3006FA6A0 /* ModernRIBs in Frameworks */,
+				E16F290B2798D5E700566281 /* RxSwift in Frameworks */,
 				E1347F0C2786EB4600EB4064 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +233,7 @@
 				E1E4E1D42792D4EA0063004D /* LoggedInComponent+TicTacToe.swift */,
 				E138F74F278CF3F40020C07F /* LoggedInBuilder.swift */,
 				E138F750278CF3F40020C07F /* LoggedInInteractor.swift */,
+				E16F290C2798DEC900566281 /* ScroreStream.swift */,
 			);
 			path = LoggedIn;
 			sourceTree = "<group>";
@@ -261,6 +268,8 @@
 			packageProductDependencies = (
 				51DF5393277AB9E3006FA6A0 /* ModernRIBs */,
 				E1347F0B2786EB4600EB4064 /* SnapKit */,
+				E16F29082798D5E700566281 /* RxRelay */,
+				E16F290A2798D5E700566281 /* RxSwift */,
 			);
 			productName = ModernRIBsTutorial;
 			productReference = 51DF535F277AB9C6006FA6A0 /* ModernRIBsTutorial.app */;
@@ -337,6 +346,7 @@
 			packageReferences = (
 				51DF5392277AB9E3006FA6A0 /* XCRemoteSwiftPackageReference "ModernRIBs" */,
 				E1347F0A2786EB4600EB4064 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E16F29072798D5E700566281 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 51DF5360277AB9C6006FA6A0 /* Products */;
 			projectDirPath = "";
@@ -391,6 +401,7 @@
 				E11268482792E71400E17757 /* TicTacToeBuilder.swift in Sources */,
 				E138F753278CF3F40020C07F /* LoggedInInteractor.swift in Sources */,
 				E11268492792E71400E17757 /* TicTacToeInteractor.swift in Sources */,
+				E16F290D2798DEC900566281 /* ScroreStream.swift in Sources */,
 				51DF539C277ABAFB006FA6A0 /* RootBuilder.swift in Sources */,
 				51DF53A8277ABE7F006FA6A0 /* LoggedOutRouter.swift in Sources */,
 				51DF539D277ABAFB006FA6A0 /* RootInteractor.swift in Sources */,
@@ -758,6 +769,14 @@
 				kind = branch;
 			};
 		};
+		E16F29072798D5E700566281 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -770,6 +789,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E1347F0A2786EB4600EB4064 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		E16F29082798D5E700566281 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E16F29072798D5E700566281 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		E16F290A2798D5E700566281 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E16F29072798D5E700566281 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

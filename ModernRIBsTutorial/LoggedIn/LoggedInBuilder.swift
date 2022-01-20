@@ -18,6 +18,9 @@ final class LoggedInComponent: Component<LoggedInDependency> {
     
     let player1Name: String
     let player2Name: String
+    var mutableScoreStream: MutableScoreStream {
+        return shared { ScoreStreamImpl() }
+    }
     
     init(dependency: LoggedInDependency, player1Name: String, player2Name: String) {
         self.player1Name = player1Name
