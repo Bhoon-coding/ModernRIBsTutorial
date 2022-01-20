@@ -41,18 +41,22 @@ final class LoggedInComponent: Component<LoggedInDependency> {
 protocol LoggedInBuildable: Buildable {
     func build(withListener listener: LoggedInListener,
                player1Name: String,
-               player2Name: String
-      ) -> LoggedInRouting
+               player2Name: String) -> LoggedInRouting
 }
 
 final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
+    
+    private let mutableScoreStream: MutableScoreStream
+    
+    init(mutableScoreStream: MutableScoreStream) {
+        self.mutableScoreStream = mutableScoreStream
+    }
 
     override init(dependency: LoggedInDependency) {
         super.init(dependency: dependency)
     }
 
-    func build(
-               withListener listener: LoggedInListener,
+    func build(withListener listener: LoggedInListener,
                player1Name: String,
                player2Name: String
      ) -> LoggedInRouting {
@@ -61,7 +65,7 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
             player1Name: player1Name,
             player2Name: player2Name
         )
-        let interactor = LoggedInInteractor()
+        let interactor = LoggedInInteractor(mutableScoreStream: component.mutableScoreStream)
         interactor.listener = listener
         
         let offGameBuilder = OffGameBuilder(dependency: component)
