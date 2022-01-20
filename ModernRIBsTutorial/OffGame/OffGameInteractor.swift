@@ -13,6 +13,7 @@ protocol OffGameRouting: ViewableRouting {
 
 protocol OffGamePresentable: Presentable {
     var listener: OffGamePresentableListener? { get set }
+    func set(score: Score)
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
