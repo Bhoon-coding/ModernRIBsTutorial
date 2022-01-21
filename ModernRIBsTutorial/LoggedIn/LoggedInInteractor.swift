@@ -30,7 +30,9 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init() {}
+    init(mutableScoreStream: MutableScoreStream) {
+        self.mutableScoreStream = mutableScoreStream
+    }
 
     override func didBecomeActive() {
         super.didBecomeActive()
@@ -55,4 +57,6 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
     func gameDidEnd() {
         router?.routeToOffGame()
     }
+    
+    private let mutableScoreStream: MutableScoreStream
 }

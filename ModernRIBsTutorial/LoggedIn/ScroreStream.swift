@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 import RxSwift
 import RxRelay
 
@@ -53,4 +54,3 @@ class ScoreStreamImpl: MutableScoreStream {
 
     private let variable = BehaviorRelay<Score>(value: Score(player1Score: 0, player2Score: 0))
 }
-

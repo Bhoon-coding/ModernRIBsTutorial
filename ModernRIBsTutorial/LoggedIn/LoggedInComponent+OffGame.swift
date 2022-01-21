@@ -16,6 +16,10 @@ protocol LoggedInDependencyOffGame: Dependency {
 }
 
 extension LoggedInComponent: OffGameDependency {
-
     // TODO: Implement properties to provide for OffGame scope.
+    
+    var scoreStream: ScoreStream {
+        return mutableScoreStream
+    }
+
 }
