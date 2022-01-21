@@ -19,7 +19,7 @@ struct Score {
     }
 }
 
-protocol ScoreStream: class {
+protocol ScoreStream: AnyObject {
     var score: Observable<Score> { get }
 }
 
@@ -52,5 +52,6 @@ class ScoreStreamImpl: MutableScoreStream {
 
     // MARK: - Private
 
+//    private let variable = BehaviorRelay<Score>(value: Score(player1Score: 0, player2Score: 0))
     private let variable = BehaviorRelay<Score>(value: Score(player1Score: 0, player2Score: 0))
 }

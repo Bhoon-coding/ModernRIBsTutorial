@@ -1,13 +1,24 @@
 //
-//  OffGameInteractor.swift
-//  ModernRIBsTutorial
+//  Copyright (c) 2017. Uber Technologies
 //
-//  Created by BH on 2022/01/11.
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 import ModernRIBs
-import RxSwift
 import Foundation
+import UIKit
+import RxSwift
+//import Combine
 
 protocol OffGameRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -16,7 +27,6 @@ protocol OffGameRouting: ViewableRouting {
 protocol OffGamePresentable: Presentable {
     var listener: OffGamePresentableListener? { get set }
     func set(score: Score)
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol OffGameListener: AnyObject {
@@ -26,12 +36,13 @@ protocol OffGameListener: AnyObject {
 final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGameInteractable, OffGamePresentableListener {
 
     weak var router: OffGameRouting?
+
     weak var listener: OffGameListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     init(presenter: OffGamePresentable,
-                  scoreStream: ScoreStream) {
+         scoreStream: ScoreStream) {
         self.scoreStream = scoreStream
         super.init(presenter: presenter)
         presenter.listener = self
@@ -39,7 +50,8 @@ final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGam
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+
+        updateScore()
     }
 
     override func willResignActive() {
@@ -47,22 +59,18 @@ final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGam
         // TODO: Pause any business logic.
     }
 
+    private func updateScore() {
+        scoreStream.score
+            .subscribe(onNext: { (score: Score) in
+                self.presenter.set(score: score)
+            })
+            .disposed(by: DisposeBag())
+    }
     // MARK: - OffGamePresentableListener
 
     func startGame() {
         listener?.startTicTacToe()
     }
-    
-    private func updateScore() {
-        scoreStream.score
-            .subscribe(
-                onNext: { ( score: Score) in
-                    self.presenter.set(score: score)
-                }
-            )
-            .disposed(by: disposeBag)
-    }
-    
+
     private let scoreStream: ScoreStream
-    private let disposeBag = DisposeBag()
 }

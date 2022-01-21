@@ -39,7 +39,6 @@ protocol OffGameBuildable: Buildable {
 }
 
 final class OffGameBuilder: Builder<OffGameDependency>, OffGameBuildable {
-
     override init(dependency: OffGameDependency) {
         super.init(dependency: dependency)
     }
