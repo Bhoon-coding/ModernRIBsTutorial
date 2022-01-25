@@ -36,7 +36,7 @@ final class LoggedInComponent: Component<LoggedInDependency> {
 protocol LoggedInBuildable: Buildable {
     func build(withListener listener: LoggedInListener,
                player1Name: String,
-               player2Name: String) -> LoggedInRouting
+               player2Name: String) -> (router: LoggedInRouting, actionableItem: LoggedInActionableItem)
 }
 
 final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
