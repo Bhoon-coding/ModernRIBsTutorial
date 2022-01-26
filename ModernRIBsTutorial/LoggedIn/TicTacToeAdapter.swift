@@ -30,4 +30,3 @@ class TicTacToeAdapter: Game, GameBuildable, TicTacToeListener {
         gameListener?.gameDidEnd(with: winner)
     }
 }
-

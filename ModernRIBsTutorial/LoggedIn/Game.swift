@@ -20,4 +20,3 @@ public protocol Game {
     var name: String { get }
     var builder: GameBuildable { get }
 }
-

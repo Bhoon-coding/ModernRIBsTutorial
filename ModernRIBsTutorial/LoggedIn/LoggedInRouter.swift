@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol LoggedInInteractable: Interactable, OffGameListener, TicTacToeListener {
+protocol LoggedInInteractable: Interactable, OffGameListener, GameListener {
     var router: LoggedInRouting? { get set }
     var listener: LoggedInListener? { get set }
 }
@@ -34,16 +34,15 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
             viewController.replaceModal(viewController: nil)
         }
     }
-    
+
     func routeToOffGame(with games: [Game]) {
         detachCurrentChild()
         attachOffGame(with: games)
     }
 
-    
     func routeToGame(with gameBuilder: GameBuildable) {
         detachCurrentChild()
-        
+
         let game = gameBuilder.build(withListener: interactor)
         self.currentChild = game
         attachChild(game)
