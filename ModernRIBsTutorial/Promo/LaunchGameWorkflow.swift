@@ -7,6 +7,7 @@
 import ModernRIBs
 import RxSwift
 
+
 public class LaunchGameWorkflow: Workflow<RootActionableItem> {
     public init(url: URL) {
         super.init()
