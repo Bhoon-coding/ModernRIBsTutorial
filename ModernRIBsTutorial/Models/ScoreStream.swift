@@ -2,34 +2,34 @@
 //  ScoreStream.swift
 //  ModernRIBsTutorial
 //
-//  Created by BH on 2022/01/20.
+//  Created by BH on 2022/01/26.
 //
 
-import Foundation
-
 import RxSwift
-import RxRelay
+import RxCocoa
 
-struct Score {
-    let player1Score: Int
-    let player2Score: Int
+public struct Score {
+    public let player1Score: Int
+    public let player2Score: Int
 
-    static func equals(lhs: Score, rhs: Score) -> Bool {
+    public static func equals(lhs: Score, rhs: Score) -> Bool {
         return lhs.player1Score == rhs.player1Score && lhs.player2Score == rhs.player2Score
     }
 }
 
-protocol ScoreStream: AnyObject {
+public protocol ScoreStream: AnyObject {
     var score: Observable<Score> { get }
 }
 
-protocol MutableScoreStream: ScoreStream {
-    func updateScore(withWinner winner: PlayerType)
+public protocol MutableScoreStream: ScoreStream {
+    func updateScore(with winner: PlayerType)
 }
 
-class ScoreStreamImpl: MutableScoreStream {
+public class ScoreStreamImpl: MutableScoreStream {
 
-    var score: Observable<Score> {
+    public init() {}
+
+    public var score: Observable<Score> {
         return variable
             .asObservable()
             .distinctUntilChanged { (lhs: Score, rhs: Score) -> Bool in
@@ -37,7 +37,7 @@ class ScoreStreamImpl: MutableScoreStream {
             }
     }
 
-    func updateScore(withWinner winner: PlayerType) {
+    public func updateScore(with winner: PlayerType) {
         let newScore: Score = {
             let currentScore = variable.value
             switch winner {
@@ -52,6 +52,6 @@ class ScoreStreamImpl: MutableScoreStream {
 
     // MARK: - Private
 
-//    private let variable = BehaviorRelay<Score>(value: Score(player1Score: 0, player2Score: 0))
     private let variable = BehaviorRelay<Score>(value: Score(player1Score: 0, player2Score: 0))
 }
+

@@ -6,12 +6,31 @@
 //
 
 import ModernRIBs
+import Darwin
 
 protocol LoggedInDependency: Dependency {
     var loggedInViewController: LoggedInViewControllable { get }
 }
 
 final class LoggedInComponent: Component<LoggedInDependency> {
+
+    fileprivate var loggedInViewController: LoggedInViewControllable {
+        return dependency.loggedInViewController
+    }
+    
+    fileprivate var games: [Game] {
+        return shared {
+            return [RandomWinAdapter(dependency: self), TicTacToeAdapter(dependency: self)]
+        }
+    }
+    
+    var mutableScoreStream: MutableScoreStream {
+        return shared { ScoreStreamImpl() }
+    }
+    
+    var scoreStream: ScoreStream {
+        return mutableScoreStream
+    }
     
     let player1Name: String
     let player2Name: String
@@ -20,14 +39,6 @@ final class LoggedInComponent: Component<LoggedInDependency> {
         self.player1Name = player1Name
         self.player2Name = player2Name
         super.init(dependency: dependency)
-    }
-
-    fileprivate var loggedInViewController: LoggedInViewControllable {
-        return dependency.loggedInViewController
-    }
-    
-    var mutableScoreStream: MutableScoreStream {
-        return shared { ScoreStreamImpl() }
     }
 }
 
@@ -54,11 +65,9 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         interactor.listener = listener
 
         let offGameBuilder = OffGameBuilder(dependency: component)
-//        let ticTacToeBuilder = TicTacToeBuilder(dependency: component)
         let router = LoggedInRouter(interactor: interactor,
                               viewController: component.loggedInViewController,
                               offGameBuilder: offGameBuilder)
-//                              ticTacToeBuilder: ticTacToeBuilder)
         return (router, interactor)
     }
 }

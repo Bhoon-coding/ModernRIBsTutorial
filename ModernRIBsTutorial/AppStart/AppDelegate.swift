@@ -44,14 +44,14 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // 3. 딥링크가 보내질때 실행되는 AppDelegate의 메소드 구현.
     // deprecated 아래 메소드 사용
-//    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//        urlHandler?.handle(url)
-//        return true
-//    }
-    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         urlHandler?.handle(url)
         return true
     }
+//    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        urlHandler?.handle(url)
+//        return true
+//    }
     // MARK: - Private
 
     private var launchRouter: LaunchRouting?

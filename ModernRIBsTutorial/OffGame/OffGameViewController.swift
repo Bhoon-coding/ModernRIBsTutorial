@@ -127,15 +127,3 @@ final class OffGameViewController: UIViewController, OffGamePresentable, OffGame
 
        private let disposeBag = DisposeBag()
    }
-
-   extension PlayerType {
-
-       var color: UIColor {
-           switch self {
-           case .player1:
-               return UIColor.red
-           case .player2:
-               return UIColor.blue
-           }
-       }
-   }
