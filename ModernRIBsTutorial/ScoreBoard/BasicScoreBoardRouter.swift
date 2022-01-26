@@ -5,7 +5,7 @@
 //  Created by BH on 2022/01/26.
 //
 
-import RIBs
+import ModernRIBs
 
 protocol BasicScoreBoardInteractable: Interactable {
     var router: BasicScoreBoardRouting? { get set }
