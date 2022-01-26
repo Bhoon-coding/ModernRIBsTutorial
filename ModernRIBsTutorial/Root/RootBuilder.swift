@@ -26,7 +26,7 @@ final class RootComponent: Component<RootDependency> {
 // MARK: - Builder
 
 protocol RootBuildable: Buildable {
-    func build() -> (launchRouter: LaunchRouting, urlHandler: UrlHandler)
+    func build() -> LaunchRouting
 }
 
 final class RootBuilder: Builder<RootDependency>, RootBuildable {
@@ -35,7 +35,7 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
         super.init(dependency: dependency)
     }
 
-    func build() -> (launchRouter: LaunchRouting, urlHandler: UrlHandler) {
+    func build() -> LaunchRouting {
         let viewController = RootViewController()
         let component = RootComponent(dependency: dependency,
                                       rootViewController: viewController)
@@ -43,11 +43,9 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
 
         let loggedOutBuilder = LoggedOutBuilder(dependency: component)
         let loggedInBuilder = LoggedInBuilder(dependency: component)
-        let router = RootRouter(interactor: interactor,
+        return RootRouter(interactor: interactor,
                           viewController: viewController,
                           loggedOutBuilder: loggedOutBuilder,
                           loggedInBuilder: loggedInBuilder)
-        
-        return (router, interactor)
     }
 }

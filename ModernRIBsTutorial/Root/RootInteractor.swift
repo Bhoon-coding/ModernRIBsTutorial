@@ -9,7 +9,7 @@ import ModernRIBs
 import RxSwift
 
 protocol RootRouting: ViewableRouting {
-    func routeToLoggedIn(withPlayer1Name player1Name: String, player2Name: String) -> LoggedInActionableItem
+    func routeToLoggedIn(withPlayer1Name player1Name: String, player2Name: String)
 }
 
 protocol RootPresentable: Presentable {
@@ -21,11 +21,7 @@ protocol RootListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class RootInteractor: PresentableInteractor<RootPresentable>,
-                            RootInteractable,
-                            RootPresentableListener,
-                            RootActionableItem,
-                            UrlHandler {
+final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
 
     weak var router: RootRouting?
 
@@ -51,31 +47,6 @@ final class RootInteractor: PresentableInteractor<RootPresentable>,
     // MARK: - LoggedOutListener
 
     func didLogin(withPlayer1Name player1Name: String, player2Name: String) {
-        let loggedInActionableItem = router?.routeToLoggedIn(withPlayer1Name: player1Name, player2Name: player2Name)
-        if let loggedInActionableItem = loggedInActionableItem {
-            loggedInActionableItemSubject.onNext(loggedInActionableItem)
-        }
+        router?.routeToLoggedIn(withPlayer1Name: player1Name, player2Name: player2Name)
     }
-    
-    // MARK: UrlHandler
-    
-    func handle(_ url: URL) {
-        let launchGameWorkflow = LaunchGameWorkflow(url: url)
-        launchGameWorkflow
-            .subscribe(self)
-            .disposed(by: DisposeBag())
-    }
-    
-    // MARK: RootActionableItem
-    
-    func waitForLogin() -> Observable<(LoggedInActionableItem, ())> {
-        return loggedInActionableItemSubject
-            .map { (loggedInItem: LoggedInActionableItem) -> (LoggedInActionableItem, ()) in
-                (loggedInItem, ())
-            }
-    }
-    
-    // MARK: Private
-    
-    private let loggedInActionableItemSubject = ReplaySubject<LoggedInActionableItem>.create(bufferSize: 1)
 }
