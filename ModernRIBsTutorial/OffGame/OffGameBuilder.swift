@@ -8,26 +8,23 @@
 import ModernRIBs
 
 
-protocol OffGameDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+public protocol OffGameDependency: Dependency {
     var player1Name: String { get }
     var player2Name: String { get }
     var scoreStream: ScoreStream { get }
 }
 
-final class OffGameComponent: Component<OffGameDependency> {
+final class OffGameComponent: Component<OffGameDependency>, BasicScoreBoardDependency {
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-    fileprivate var player1Name: String {
+    var player1Name: String {
         return dependency.player1Name
     }
-    
-    fileprivate var player2Name: String {
+
+    var player2Name: String {
         return dependency.player2Name
     }
-    
-    fileprivate var scoreStream: ScoreStream {
+
+    var scoreStream: ScoreStream {
         return dependency.scoreStream
     }
 }
@@ -35,21 +32,25 @@ final class OffGameComponent: Component<OffGameDependency> {
 // MARK: - Builder
 
 protocol OffGameBuildable: Buildable {
-    func build(withListener listener: OffGameListener) -> OffGameRouting
+    func build(withListener listener: OffGameListener, games: [Game]) -> OffGameRouting
 }
 
 final class OffGameBuilder: Builder<OffGameDependency>, OffGameBuildable {
+
     override init(dependency: OffGameDependency) {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: OffGameListener) -> OffGameRouting {
+    func build(withListener listener: OffGameListener, games: [Game]) -> OffGameRouting {
         let component = OffGameComponent(dependency: dependency)
-        let viewController = OffGameViewController(player1Name: component.player1Name,
-                                                   player2Name: component.player2Name)
-        let interactor = OffGameInteractor(presenter: viewController,
-                                           scoreStream: component.scoreStream)
+        let viewController = OffGameViewController(games: games)
+        let interactor = OffGameInteractor(presenter: viewController)
         interactor.listener = listener
-        return OffGameRouter(interactor: interactor, viewController: viewController)
+
+        let scoreBoardBuilder = BasicScoreBoardBuilder(dependency: component)
+        let router = OffGameRouter(interactor: interactor,
+                                   viewController: viewController,
+                                   scoreBoardBuilder: scoreBoardBuilder)
+        return router
     }
 }

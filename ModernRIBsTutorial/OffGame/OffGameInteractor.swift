@@ -16,7 +16,6 @@
 
 import ModernRIBs
 import RxSwift
-//import Combine
 
 protocol OffGameRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -24,6 +23,7 @@ protocol OffGameRouting: ViewableRouting {
 
 protocol OffGamePresentable: Presentable {
     var listener: OffGamePresentableListener? { get set }
+    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol OffGameListener: AnyObject {
