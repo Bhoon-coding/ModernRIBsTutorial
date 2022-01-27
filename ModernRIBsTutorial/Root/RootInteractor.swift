@@ -7,6 +7,8 @@
 
 import ModernRIBs
 import RxSwift
+import UIKit
+import Foundation
 
 protocol RootRouting: ViewableRouting {
     func routeToLoggedIn(withPlayer1Name player1Name: String, player2Name: String) -> LoggedInActionableItem
@@ -63,7 +65,9 @@ final class RootInteractor: PresentableInteractor<RootPresentable>,
         let launchGameWorkflow = LaunchGameWorkflow(url: url)
         launchGameWorkflow
             .subscribe(self)
-            .disposed(by: DisposeBag())
+            .dispose(
+            
+            
     }
     
     func waitForLogin() -> Observable<(LoggedInActionableItem, ())> {

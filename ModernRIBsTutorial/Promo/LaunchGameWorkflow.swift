@@ -6,6 +6,8 @@
 //
 import ModernRIBs
 import RxSwift
+import UIKit
+import Foundation
 
 
 public class LaunchGameWorkflow: Workflow<RootActionableItem> {
@@ -36,3 +38,4 @@ public class LaunchGameWorkflow: Workflow<RootActionableItem> {
         return nil
     }
 }
+
